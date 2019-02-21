@@ -1,0 +1,8 @@
+build/
+assets/
+persist/
+stats/
+.git/
+coverage/
+
+src/serviceWorker.js
