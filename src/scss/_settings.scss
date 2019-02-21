@@ -1,0 +1,9 @@
+
+
+@mixin bg-gradient-two($angle: 180deg, $color1: #0bd, $color2: #fff) {
+    background: linear-gradient($angle, $color1, $color2) fixed;
+}
+
+$mobile: 400px;
+$ipad: 768px;
+

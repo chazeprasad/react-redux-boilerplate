@@ -1,0 +1,15 @@
+@import './settings';
+
+.sidemenu {
+    // @include bg-gradient-two(180deg,#1ebbd1, #127ea4);
+    @include bg-gradient-two(180deg,#4ba5dd, #246bc1);
+
+}
+
+.sidemenu-toggle-bottom-wrapper {
+    position: absolute;
+    left:0px;
+    right: 0px;
+    bottom:0px;
+    background: #ff6600;
+}
