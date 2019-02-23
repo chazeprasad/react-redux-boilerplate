@@ -1,7 +1,7 @@
-import React from "react"
+import React from 'react'
 
 import './home.scss'
-import Article from '../article/Article';
+import Article from '../article/Article'
 
 const Home = () => (
     <div>

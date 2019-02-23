@@ -1,28 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import compose from 'recompose/compose'
 
 import { ArticleAction } from './ArticleAction'
-import { ArticleSelector } from './ArticleSelector';
+import { ArticleSelector } from './ArticleSelector'
 
-class Article extends Component{
-    dispatchAction = null;
-    constructor(props){
+class Article extends Component {
+    dispatchAction = null
+    constructor(props) {
         super(props)
-        this.dispatchAction = this.props.dispatch;
+        this.dispatchAction = this.props.dispatch
     }
 
-    componentDidMount(){
-       this.getArticles();
+    componentDidMount() {
+        this.getArticles()
     }
 
-    getArticles(){
+    getArticles() {
         const action = ArticleAction.Create(ArticleAction.GET_ARTICLES)
-        this.dispatchAction(action);
+        this.dispatchAction(action)
     }
 
-    render(){
+    render() {
         const articles = this.props.articles
+
         return (
             <div>
                 {articles.map(x => (
@@ -33,21 +34,24 @@ class Article extends Component{
     }
 }
 
-const stateToProps = (state) => {
+const stateToProps = state => {
     return {
-        articles: ArticleSelector.GetArticles(state)
+        articles: ArticleSelector.GetArticles(state),
     }
 }
 
-const actionToProps = (dispatch) => {
+const actionToProps = dispatch => {
     return {
         getArticles: () => {
             const action = new ArticleAction(ArticleAction.GET_ARTICLES)
             dispatch(action)
-        }
+        },
     }
 }
 
 export default compose(
-    connect(stateToProps, null)
+    connect(
+        stateToProps,
+        null
+    )
 )(Article)

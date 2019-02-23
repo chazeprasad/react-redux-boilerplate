@@ -1,7 +1,7 @@
 /* global __DEVTOOLS__ __USE_GA__ __GA_ID__ */
 /* eslint global-require:0 */
 
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { MuiThemeProvider } from '@material-ui/core/styles'
 

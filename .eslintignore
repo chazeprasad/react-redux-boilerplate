@@ -6,3 +6,4 @@ stats/
 coverage/
 
 src/serviceWorker.js
+src/theme/Theme.js
