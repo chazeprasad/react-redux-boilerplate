@@ -1,0 +1,21 @@
+@import '../../../scss/settings';
+
+.hrx-header{
+    display: flex;
+    &.hrx-header-shift-max {
+        margin-left: $sidenav-max-width;
+        width: calc(100% - #{$sidenav-max-width});
+        transition: width .25s ease;
+    }
+    &.hrx-header-shift-min{
+        margin-left: $sidenav-min-width;
+        width: calc(100% - #{$sidenav-min-width});
+        transition: width .25s ease;
+        
+        @media(max-width: $mobile) {
+            margin-left: 0;
+            width: calc(100% - 0px);
+        }
+
+    }
+}

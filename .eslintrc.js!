@@ -115,7 +115,7 @@ module.exports = {
 		'react/prop-types': 0, // Flow.
 		'react/require-default-props': 0, // Flow.
 		'react/jsx-no-bind': 2,
-		'react/prefer-stateless-function': [2, { ignorePureComponents: true }],
+		'react/prefer-stateless-function': [0, { ignorePureComponents: true }],
 	},
 	settings: {
 		polyfills: ['promises'],

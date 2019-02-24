@@ -546,7 +546,7 @@ module.exports = function(webpackEnv) {
      
           'process.env.NODE_ENV': JSON.stringify('development'),
           __DEVELOPMENT__: true,
-          __DEVTOOLS__: true,
+          __DEVTOOLS__: false,
           __USE_GA__: false,
           __GA_ID__: null
         

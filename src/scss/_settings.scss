@@ -4,6 +4,12 @@
     background: linear-gradient($angle, $color1, $color2) fixed;
 }
 
-$mobile: 400px;
-$ipad: 768px;
+$high-radius-dark: #3f4759;
+$high-radius-light: #3f4759;
 
+$sidenav-max-width: 280px;
+$sidenav-min-width: 64px;
+
+$mobile: 400px;
+$tablet: 767px;
+$desktop: 1023px;

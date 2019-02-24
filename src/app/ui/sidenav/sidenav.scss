@@ -1,0 +1,34 @@
+@import '../../../scss/settings';
+
+.sidemenu {
+    // @include bg-gradient-two(180deg,#1ebbd1, #127ea4);
+    @include bg-gradient-two(180deg,#4ba5dd, #246bc1);
+
+}
+
+.drawer{
+    z-index: 5;
+    width: 280px;
+    flex-shrink: 0;
+    white-space: nowrap;
+    transition: all .25s ease;
+  
+  
+  
+    &.drawer-min{
+      overflow: hidden;
+      width:64px;
+      transition: all .25s ease;
+  
+      @media(max-width: $mobile){
+        width:0px;
+      }
+    }
+  
+    &.drawer-Open{
+      width: 280px;
+      transition: all .25s ease;
+    }
+  
+  }
+  
