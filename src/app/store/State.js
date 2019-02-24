@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux'
 import { connectRouter } from 'connected-react-router'
-import { ArticleReducer } from '../ui/article/ArticleReducer'
+import { ArticleState } from '../ui/article/ArticleState'
 
-class RootReducer {
-    static GetState(history) {
+class State {
+    static Reducer(history) {
         return combineReducers({
             router: connectRouter(history),
-            article: ArticleReducer.GetState,
+            article: ArticleState.Reducer,
         })
     }
 }
 
-export { RootReducer }
+export { State }

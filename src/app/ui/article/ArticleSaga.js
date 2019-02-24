@@ -4,15 +4,15 @@ import { call, put } from 'redux-saga/effects'
 import { ArticleAction } from './ArticleAction'
 
 class ArticleSaga {
-    static GetArticles() {
+    getArticles() {
         const url = 'https://jsonplaceholder.typicode.com/posts'
 
         return Axios.get(url)
     }
 
-    static *OnGetArticles() {
+    *onGetArticles() {
         try {
-            const response = yield call(ArticleSaga.GetArticles)
+            const response = yield call(this.getArticles)
             const data = response.data.slice(0, 10)
 
             // dispatch a success action to the store with the new dog
@@ -33,4 +33,6 @@ class ArticleSaga {
     }
 }
 
-export { ArticleSaga }
+const articleSaga = new ArticleSaga()
+
+export { articleSaga }

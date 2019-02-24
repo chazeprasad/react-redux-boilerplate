@@ -8,8 +8,8 @@ import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
 
 import DevTools from '../util/DevTools'
-import { RootSaga } from './RootSaga'
-import { RootReducer } from './RootReducer'
+import { Saga } from './Saga'
+import { State } from './State'
 
 const history = createBrowserHistory()
 const initialState = {}
@@ -40,14 +40,14 @@ if (__DEVTOOLS__) {
 }
 
 const finalCreateStore = createStoreWithMiddleware(createStore)
-const Store = finalCreateStore(RootReducer.GetState(history), initialState)
-sagaMiddleware.run(RootSaga.GetWatcher)
+const Store = finalCreateStore(State.Reducer(history), initialState)
+sagaMiddleware.run(Saga.GetWatcher)
 
 /* if (__DEVELOPMENT__) {
     if (module.hot) {
         // Enable Webpack hot module replacement for reducers
         module.hot.accept('./state', () => {
-            const nextReducer = require('./RootReducer').RootReducer.GetState
+            const nextReducer = require('./Reducer').Reducer.GetState
             Store.replaceReducer(nextReducer)
         })
     }

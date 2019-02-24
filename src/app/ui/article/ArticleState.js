@@ -6,8 +6,8 @@ const initialState = {
     articles: [{ id: 1111, title: 'test' }],
 }
 
-class ArticleReducer {
-    static GetState(state = initialState, action) {
+class ArticleState {
+    static Reducer(state = initialState, action) {
         switch (action.type) {
             case ArticleAction.GET_ARTICLES_SUCCESS:
                 return {
@@ -20,4 +20,4 @@ class ArticleReducer {
     }
 }
 
-export { ArticleReducer }
+export { ArticleState }

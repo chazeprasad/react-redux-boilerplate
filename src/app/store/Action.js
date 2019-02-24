@@ -1,7 +1,4 @@
 class Action {
-    type = null
-    payload = null
-
     static Create(type, payload) {
         const action = { type: type }
         if (payload) {

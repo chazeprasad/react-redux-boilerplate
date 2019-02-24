@@ -4,12 +4,14 @@ import compose from 'recompose/compose'
 
 import { ArticleAction } from './ArticleAction'
 import { ArticleSelector } from './ArticleSelector'
+import ArticleView from './ArticleView'
 
 class Article extends Component {
     dispatchAction = null
     constructor(props) {
         super(props)
         this.dispatchAction = this.props.dispatch
+        this.itemClick = this.itemClick.bind(this)
     }
 
     componentDidMount() {
@@ -20,15 +22,17 @@ class Article extends Component {
         const action = ArticleAction.Create(ArticleAction.GET_ARTICLES)
         this.dispatchAction(action)
     }
+    itemClick = k => e => {
+        console.log('clicked')
+        console.log(k)
+    }
 
     render() {
         const articles = this.props.articles
 
         return (
             <div>
-                {articles.map(x => (
-                    <p key={x.id}>{x.title}</p>
-                ))}
+                <ArticleView {...this.props} itemClick={this.itemClick} />
             </div>
         )
     }
@@ -42,9 +46,8 @@ const stateToProps = state => {
 
 const actionToProps = dispatch => {
     return {
-        getArticles: () => {
-            const action = new ArticleAction(ArticleAction.GET_ARTICLES)
-            dispatch(action)
+        clickTest: x => {
+            console.log(x)
         },
     }
 }
