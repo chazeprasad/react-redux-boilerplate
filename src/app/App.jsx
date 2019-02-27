@@ -4,11 +4,18 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { MuiThemeProvider } from '@material-ui/core/styles'
+import ReactBreakpoints from 'react-breakpoints'
 
 import { Theme } from '../theme/Theme'
 import { Store, history } from './store/Store'
 import routes from './routing/route'
 import './app.scss'
+
+const breakpoints = {
+    mobile: 600,
+    tablet: 960,
+    desktop: 1280,
+}
 
 class App extends Component {
     render() {
@@ -18,14 +25,28 @@ class App extends Component {
             const DevTools = require('./util/DevTools').default
             cmp = (
                 <Provider store={Store}>
-                    <MuiThemeProvider theme={Theme}>{routes}</MuiThemeProvider>
-                    <DevTools />
+                    <ReactBreakpoints
+                        breakpoints={breakpoints}
+                        debounceResize={true}
+                        debounceDelay={100}
+                        defaultBreakpoint={breakpoints.mobile}
+                    >
+                        <MuiThemeProvider theme={Theme}>{routes}</MuiThemeProvider>
+                        <DevTools />
+                    </ReactBreakpoints>
                 </Provider>
             )
         } else {
             cmp = (
                 <Provider store={Store}>
-                    <MuiThemeProvider theme={Theme}>{routes}</MuiThemeProvider>
+                    <ReactBreakpoints
+                        breakpoints={breakpoints}
+                        debounceResize={true}
+                        debounceDelay={100}
+                        defaultBreakpoint={breakpoints.mobile}
+                    >
+                        <MuiThemeProvider theme={Theme}>{routes}</MuiThemeProvider>
+                    </ReactBreakpoints>
                 </Provider>
             )
         }

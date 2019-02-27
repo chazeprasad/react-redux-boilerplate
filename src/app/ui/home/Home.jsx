@@ -1,23 +1,39 @@
 import React, { Component } from 'react'
 import { withBreakpoints } from 'react-breakpoints'
+import { connect } from 'react-redux';
+import compose from 'recompose/compose'
 
 import './home.scss'
-import Article from '../article/Article'
 import HomeView from './HomeView'
-import './home.scss'
+import { SidenavAction } from '../sidenav/SidenavAction';
+
 
 class Home extends Component {
     constructor(props) {
         super(props)
+        this.dispatch = this.props.dispatch
+    }
+
+    onBackdropClick = () => {
+        const action = SidenavAction.Create(SidenavAction.TOGGLE)
+        this.dispatch(action)
     }
 
     render() {
-        const { breakpoints, currentBreakpoint } = this.props
-        const sidenavBackdrop = breakpoints[currentBreakpoint] <= breakpoints.mobile 
         return (
-            <HomeView className="home-container" {...this.props} sidenavBackdrop={sidenavBackdrop} />
+            <HomeView className="home-container" {...this.props} onBackdropClick={this.onBackdropClick}  />
         )
     }
 }
 
-export default withBreakpoints(Home)
+const stateToProps = state => {
+    return {
+        sidenavStatus: state.sidenav.status
+    }
+}
+// <Hidden only={['sm', 'lg']}>
+
+export default compose(
+    connect(stateToProps, null),
+
+)(Home)

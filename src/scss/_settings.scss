@@ -4,12 +4,22 @@
     background: linear-gradient($angle, $color1, $color2) fixed;
 }
 
-$high-radius-dark: #3f4759;
-$high-radius-light: #3f4759;
+@mixin bg-gradient-three($angle: 180deg, $color1: #0bd, $color2: #fff, $color3: #fff) {
+    background: linear-gradient($angle, $color1, $color2, $color3) fixed;
+}
+
+$hrx-dark-blue: #3f4759;
+$hrx-light-blue: #5daae0;
+$hrx-sidenav-top-color: #5daae0;
+$hrx-sidenav-bottom-color: #4f98b2;
 
 $sidenav-max-width: 280px;
 $sidenav-min-width: 64px;
 
-$mobile: 400px;
-$tablet: 767px;
-$desktop: 1023px;
+$mobile: 600px;
+$tablet: 960px;
+$desktop: 1280px;
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}

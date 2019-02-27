@@ -4,30 +4,15 @@
 import React from 'react'
 import { render } from 'react-dom'
 import * as serviceWorker from '../serviceWorker'
-import ReactBreakpoints from 'react-breakpoints'
 
 import App from './App'
 
-const breakpoints = {
-    mobile: 320,
-    tablet: 768,
-    desktop: 1025,
-  }
-
-  
 const rootElement = document.getElementById('root')
 
 if (rootElement) {
     document.body.style.backgroundColor = 'inherit'
     render(
-        <ReactBreakpoints
-            breakpoints={breakpoints}
-            debounceResize={true}
-            debounceDelay={100}
-            defaultBreakpoint={breakpoints.mobile}
-        >
-            <App />
-        </ReactBreakpoints>
+        <App />
     , rootElement)
 }
 

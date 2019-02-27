@@ -11,45 +11,53 @@ import ListItemText from '@material-ui/core/ListItemText'
 import { SidenavStatus } from './SidenavStatus';
 import classNames from 'classnames';
 
+import DashboardIco from '../../../media/img/icon_dashboard.svg'
 
-const SidenavView = props => (
+
+
+const SidenavView = ({data, css, toggleSidenave, onMenuClick, collapisng, getMenuCssClass, getCssStyle}) => (
     <Drawer
-        className={props.css.drawerClass}
-        classes={{
-            paper: classNames('sidemenu', [props.css.drawerClass] ),
-          }}
-        open={props.data.status === SidenavStatus.MAX}
-        onClose={props.toggleSidenave}
+        className={css.drawer}
+        classes={{paper: css.paper }}
+        open={data.status === SidenavStatus.min}
+        onClose={toggleSidenave}
         variant="permanent"
 
     >
-          <div>
-            
-          </div>
-          <Divider />
-          <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem button key={text}>
-                
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <List>
-            {['All mail', 'Trash', 'Spam'].map((text, index) => (
-              <ListItem button key={text}>
-                
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-
-            <ListItem button key="Hello"> <Link to="/hello">Hello</Link></ListItem>
-          </List>
-          <Divider />
-
-         
-        </Drawer>
+        <div className="hr-sidemenu-wrapper">
+        { data.menu
+            ?
+            <ul className="hr-nav ">
+                {data.menu.map( (menu, index) => (
+                    <li className={ menu.active ? 'primary active' : 'primary' } key={'menu-item-wrapper-'+index}>
+                       <a key={'menu-item-'+index} onClick={onMenuClick(menu)}>
+                           <i key={'menu-icon-'+index}>{menu.ico}</i>
+                           <DashboardIco fill="red" className="ico" width={48} height={48} />
+                           <span key={'menu-title-'+index}>{menu.title}</span>
+                       </a>
+                       {(menu.children && menu.children.length)
+                            ?
+                            <ul className={getMenuCssClass(menu)} key={'sm-'} style={getCssStyle(menu)}>
+                                {menu.children.map((sm, i) => (
+                                    <li key={'sm-item-wrapper-'+i}>
+                                        <a key={'sm-item-'+i}>
+                                            <i key={'sm-icon-'+i}>{sm.ico}</i>
+                                            <span key={'sm-title-'+i}>{sm.title}</span>
+                                        </a>
+                                    </li>
+                                ))
+                                }
+                            </ul>
+                            :   ''
+                       }
+                   </li>
+                ))}
+            </ul>
+            : ''
+        }
+        </div>
+    </Drawer>
 )
+
 
 export default SidenavView

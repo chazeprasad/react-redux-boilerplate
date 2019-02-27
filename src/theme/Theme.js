@@ -5,6 +5,8 @@ import pink from '@material-ui/core/colors/pink'
 
 export const Theme = createMuiTheme({
   typography: {
+    fontFamily: ['Roboto', '"Helvetica Neue"'].join(','),
+    fontSize: 12,
     useNextVariants: true,
   },
   palette: {
