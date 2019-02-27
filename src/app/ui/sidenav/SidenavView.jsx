@@ -12,6 +12,7 @@ import { SidenavStatus } from './SidenavStatus';
 import classNames from 'classnames';
 
 import DashboardIco from '../../../media/img/icon_dashboard.svg'
+import ArrowRightIco from '../../../media/img/arrow-right.svg'
 
 
 
@@ -31,10 +32,12 @@ const SidenavView = ({data, css, toggleSidenave, onMenuClick, collapisng, getMen
                 {data.menu.map( (menu, index) => (
                     <li className={ menu.active ? 'primary active' : 'primary' } key={'menu-item-wrapper-'+index}>
                        <a key={'menu-item-'+index} onClick={onMenuClick(menu)}>
-                           <i key={'menu-icon-'+index}>{menu.ico}</i>
-                           <DashboardIco fill="red" className="ico" width={48} height={48} />
+                           {/* <i key={'menu-icon-'+index}>{menu.ico}</i> */}
+                           <DashboardIco fill="red" className="ico" width={24} height={24} />
                            <span key={'menu-title-'+index}>{menu.title}</span>
                        </a>
+                       <ArrowRightIco fill="#ffffff" className={menu.active ? 'arrow open' : 'arrow'} width={20} height={20} />
+
                        {(menu.children && menu.children.length)
                             ?
                             <ul className={getMenuCssClass(menu)} key={'sm-'} style={getCssStyle(menu)}>

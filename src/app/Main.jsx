@@ -6,6 +6,7 @@ import { render } from 'react-dom'
 import * as serviceWorker from '../serviceWorker'
 
 import App from './App'
+import '../scss/style.scss'
 
 const rootElement = document.getElementById('root')
 

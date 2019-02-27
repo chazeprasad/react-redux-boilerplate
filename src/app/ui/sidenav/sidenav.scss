@@ -44,7 +44,7 @@ $duration:0.45s;
 
 
     .hrx-sidenav-paper {
-        @include bg-gradient-three(180deg, lighten($hrx-sidenav-top-color, 0), lighten($hrx-sidenav-top-color, 5), darken($hrx-sidenav-top-color, 10));
+        @include bg-gradient-three(180deg, darken($hrx-sidenav-top-color, 0), lighten($hrx-sidenav-top-color, 7), darken($hrx-sidenav-top-color, 15));
         width: $sidenav-width;
         max-width: 280px;
         min-height: 100vh;
@@ -101,7 +101,7 @@ $duration:0.45s;
                     width: 100%;
                     position: relative;
                     text-align: left;
-                    transition: all $duration ease;
+                    transition: height $duration ease, opaciity $duration ease, background-color $duration ease, border-left $duration ease;
 
 
                     &.primary{
@@ -111,14 +111,26 @@ $duration:0.45s;
                         }
                     }
 
+                    .arrow{
+                        position: absolute;
+                        top:24px;
+                        right:10px;
+                        transition: transform $duration ease;
+                        &.open {
+                            transform: rotate(90deg);
+                        }
+                    }
+
 
                     &.active {
-                        border-top: 1px solid rgba(255, 255, 255, .3);
-                        border-bottom: 1px solid rgba(255, 255, 255, .3);
+                        border-top: 1px solid rgba(255, 255, 255, .4);
+                        border-bottom: 1px solid rgba(255, 255, 255, .4);
+                        // border-left: 4px solid lighten($hrx-light-blue,40);
 
 
-                        border-left: 4px solid lighten($hrx-light-blue,40);
-                        background: darken($hrx-light-blue, 5);
+
+                        // border-left: 4px solid lighten($hrx-light-blue,40);
+                        background-color: darken($hrx-light-blue, 5);
 
                         a {
                             color: #ffffff;
@@ -128,12 +140,21 @@ $duration:0.45s;
                     a {
                         cursor: pointer;
                         color: #ffffff;
-                        font-weight: 600;
+                        font-weight: 400;
                         padding: 14px 20px 14px 25px;
                         display: block;
                         text-decoration: none;
                         background-color: transparent;
                         min-height: $menu-height;
+                        display: flex;
+                        align-items: center;
+                        
+
+
+                        span {
+                            margin-left: 10px;
+                            
+                        }
 
                     }
                 }
@@ -141,7 +162,7 @@ $duration:0.45s;
                 &.nav-second-level{
                     background: darken($hrx-light-blue, 5);
                     overflow: hidden;
-                    transition: height $duration ease, opasity $duration ease;
+                    transition: height $duration ease, opacity $duration ease;
 
 
                     > li {
@@ -150,9 +171,18 @@ $duration:0.45s;
                         // border-bottom: 1px solid #666;
                         min-height: $submenu-height;
 
+                        &:first-child{
+                            border-top: 1px solid rgba(255, 255, 255, .2);
+
+                        }
+
                         a {
                             padding: 7px 10px 7px 10px;
                             padding-left: 52px;
+
+                            &:hover{
+                                background-color: darken($hrx-light-blue, 10);
+                            }
                         }
                         &.active {
                             border: none;
@@ -165,6 +195,7 @@ $duration:0.45s;
                 }
                 &.collapse{
                     // display: none;
+                    opacity: 0;
 
                 }
                 &.collapsing{
@@ -176,6 +207,7 @@ $duration:0.45s;
                 &.in {
                     height: auto;
                     display: block;
+                    
                 }
 
 
