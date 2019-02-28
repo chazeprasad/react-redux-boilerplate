@@ -48,7 +48,7 @@ $duration:0.45s;
         width: $sidenav-width;
         max-width: 280px;
         min-height: 100vh;
-        overflow: hidden;
+        overflow: visible;
         transition: width .45s ease;
         box-shadow: 5px 0 7px 0 rgba(0, 0, 0, 0.25);
 
@@ -78,16 +78,17 @@ $duration:0.45s;
             }
           }
 
-        .hr-sidemenu-wrapper {
+        .hrx-sidemenu-wrapper {
             display: flex;
             flex-direction: column;
             width:100%;
-            max-height: 90vh;
-            height: 90vh;
-            overflow-y: scroll;
+            // max-height: 90vh;
+            // height: 90vh;
+            // overflow-y: scroll;
             padding-top: 30px;
 
-            ul.hr-nav {
+
+            ul.hrx-nav {
                 display: flex;
                 flex-wrap: wrap;
                 padding-left: 0;
@@ -95,6 +96,56 @@ $duration:0.45s;
                 list-style: none;
                 margin-top: 0;
                 width:100%;
+
+                &.hrx-nav-mini {
+                        > li {
+                            overflow: visible;
+                            > a {
+                                width:64px;
+
+                                justify-content: center;
+
+                                padding:0px;
+                                .ico {
+                                    width: 32px;
+                                    height: 32px;
+                                }
+                                span {
+                                    display: none;
+                                }
+                                .arrow {
+                                    display: none;
+                                }
+
+                                &.active {
+                                     left: 64px;
+
+                                     .nav-second-level{
+                                        left: 65px;
+                                     }
+                                }
+                            }
+
+                            ul.nav-second-level {
+                                position: absolute;
+                                left: 64px;
+                                top: 0;
+                                background-color: #2f4050;
+                                padding: 10px 10px 10px 10px;
+                                font-size: 12px;
+                                width:216px;
+
+                                li {
+                                    a{
+                                        padding: 10px 10px 10px 15px;
+                                    }
+                                }
+                            }
+
+                        }
+
+                }
+
 
                 > li {
                     display: block;
@@ -111,15 +162,6 @@ $duration:0.45s;
                         }
                     }
 
-                    .arrow{
-                        position: absolute;
-                        top:24px;
-                        right:10px;
-                        transition: transform $duration ease;
-                        &.open {
-                            transform: rotate(90deg);
-                        }
-                    }
 
 
                     &.active {
@@ -148,12 +190,29 @@ $duration:0.45s;
                         min-height: $menu-height;
                         display: flex;
                         align-items: center;
-                        
+                        position: relative;
+
+                        .ico {
+                            width: 24px;
+                            height: 24px;
+                        }
+
+                        .arrow{
+                            position: absolute;
+                            top:24px;
+                            right:10px;
+                            transition: transform $duration ease;
+                            &.open {
+                                transform: rotate(90deg);
+                            }
+                        }
+
+
 
 
                         span {
                             margin-left: 10px;
-                            
+
                         }
 
                     }
@@ -207,13 +266,13 @@ $duration:0.45s;
                 &.in {
                     height: auto;
                     display: block;
-                    
+
                 }
 
 
             }
 
-            .hr-sidemenu-level-1-menu-list{
+            .hrx-sidemenu-level-1-menu-list{
                 font-size: 13px;
                 font-weight: 400;
                 line-height: 1.5;

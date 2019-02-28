@@ -16,7 +16,9 @@ class Sidenav extends Component {
     state = {
         collapsing: false,
         selectedMenu: null,
-        previousMemu: null
+        previousMemu: null,
+        showSubmenu: true,
+        menu: []
     }
 
     duraion = 0.45
@@ -27,27 +29,35 @@ class Sidenav extends Component {
         this.dispatch = this.props.dispatch
 
     }
+    componentDidMount(){
+        this.setState({
+            menu: this.props.sidenav.menu.map(x => {
+                return {...x};
+            })
+        })
+
+    }
     toggleSidenave = () => {
         const action = SidenavAction.Create(SidenavAction.TOGGLE)
         this.dispatch(action)
     }
     onMenuClick = (menu) => (evt) => {
-        console.log(menu)
         evt.preventDefault();
-        let menuList = this.props.data.menu;
-        for (let x of menuList) {
-            x.active = false
-            if(x.id === menu.id){
-                x.active = true
-                this.setState({
-                    previousMemu: this.state.selectedMenu,
-                    selectedMenu: x,
-                })
-            }
+        this.setState({
+            showSubmenu: true
+        })
+
+        const currentMenu = {...this.state.selectedMenu};
+
+        if(this.state.selectedMenu && menu.id === this.state.selectedMenu.id) {
+            this.setState({previousMemu: null})
+            this.setState({selectedMenu: null})
+        } else {
+            this.setState({previousMemu: {currentMenu}})
+            this.setState({selectedMenu: {...menu }})
         }
 
-        const action = SidenavAction.Create(SidenavAction.ON_SELECT_MENU, menuList)
-        this.dispatch(action)
+
         this.setState({collapsing: true});
         this.timer = setTimeout(() => {
             this.setState({collapsing: false});
@@ -56,30 +66,55 @@ class Sidenav extends Component {
 
     }
 
+    onSubmenuClick = (menu, submenu) => (evt) => {
+        evt.preventDefault();
+    }
+
+    onSubmenuMouseOut(event){
+        var e = event.toElement || event.relatedTarget;
+        if (e.parentNode == this || e == this) {
+            console.log("--- IN ---")
+
+           return;
+        }
+        console.log("--- OUT ---")
+
+        // const sidenav = this.props.sidenav
+
+        // if(sidenav.status === SidenavStatus.MIN){
+        //     this.setState({
+        //         showSubmenu: false
+        //     })
+        // }
+    }
+
     getMenuCssClass = (menu) => {
-        let css = ['hr-nav nav-second-level']
+        let css = ['hrx-nav nav-second-level']
         if(this.state.selectedMenu && this.state.previousMemu) {
             css.push((this.state.collapsing && (menu.id === this.state.selectedMenu.id || menu.id === this.state.previousMemu.id ) ) ? 'collapsing' : 'collapse')
         } else {
             css.push('collapse')
         }
 
-        css.push(menu.active && !this.state.collapsing ? 'in ' : '')
+        css.push( this.state.selectedMenu && (menu.id === this.state.selectedMenu.id) && !this.state.collapsing ? 'in ' : '')
         return css.join(' ')
     }
     getCssStyle = (menu) => {
-        const height = menu.active ? (menu.children.length * this.submenuHeight) + 0 : 0
-        const opacity = menu.active ? 1 : 0
-        const style = { height: height, opacity: opacity }
-        console.log('style')
-        console.log(style)
+        const data = this.props.sidenav
+        let height =  this.state.selectedMenu && (menu.id === this.state.selectedMenu.id) ? (menu.children.length * this.submenuHeight) + 0 : 0
+        if(data.status === SidenavStatus.MIN){
+            height = height;
+        }
+        const opacity =  this.state.selectedMenu && (menu.id === this.state.selectedMenu.id) ? 1 : 0
+        const display =  !this.state.showSubmenu ? 'none' : 'block'
+        const style = { height: height, opacity: opacity , display: display}
+
        return (style)
     }
 
     render() {
 
-        console.log(this.props)
-        const data = this.props.data
+        const data = this.props.sidenav
         const classList = ['hrx-sidenav-paper'];
         if( data.status === SidenavStatus.MAX) { classList.push('sidenav-max') }
         if( data.status === SidenavStatus.MIN) { classList.push('sidenav-min') }
@@ -89,15 +124,13 @@ class Sidenav extends Component {
             paper: paper
         }
 
-
-
-        return <SidenavView  {...this.props} toggleSidenave={this.toggleSidenave} onMenuClick={this.onMenuClick}  css={css} collapisng={this.state.collapsing} getMenuCssClass={this.getMenuCssClass} getCssStyle={this.getCssStyle}  />
+        return <SidenavView onSubmenuMouseOut={this.onSubmenuMouseOut}  {...this.props} toggleSidenave={this.toggleSidenave} onMenuClick={this.onMenuClick}  css={css} collapisng={this.state.collapsing} getMenuCssClass={this.getMenuCssClass} getCssStyle={this.getCssStyle} onSubmenuClick={this.onSubmenuClick} menuList={this.state.menu} selectedMenu={this.state.selectedMenu}  />
     }
 }
 
 const stateToProps = state => {
     return {
-        data: state.sidenav
+        sidenav: state.sidenav
 
     }
 }
