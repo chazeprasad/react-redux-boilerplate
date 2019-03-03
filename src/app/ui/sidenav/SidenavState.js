@@ -13,7 +13,7 @@ const initialState = {
                 { title: 'Menu 2 E', children:[] },
                 { title: 'Menu 2 F', children:[] },
             ] },
-            { id:2, title: 'Menu 1 B', ico: '', children:[] },
+            { id:2, title: 'Menu 1 B', ico: '', children:[  ] },
             { id:3, title: 'Menu 1 C', ico: '', children:[
                 { title: 'Menu 2 A', children:[] },
                 { title: 'Menu 2 B', children:[] },

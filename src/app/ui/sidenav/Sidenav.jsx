@@ -18,6 +18,7 @@ class Sidenav extends Component {
         selectedMenu: null,
         previousMemu: null,
         showSubmenu: true,
+        isPrimaryOpen: true,
         menu: []
     }
 
@@ -38,23 +39,30 @@ class Sidenav extends Component {
 
     }
     toggleSidenave = () => {
+
         const action = SidenavAction.Create(SidenavAction.TOGGLE)
         this.dispatch(action)
     }
     onMenuClick = (menu) => (evt) => {
         evt.preventDefault();
-        this.setState({
-            showSubmenu: true
-        })
 
         const currentMenu = {...this.state.selectedMenu};
 
         if(this.state.selectedMenu && menu.id === this.state.selectedMenu.id) {
-            this.setState({previousMemu: null})
-            this.setState({selectedMenu: null})
+            // this.setState({previousMemu: null})
+            // this.setState({selectedMenu: null})
+            this.setState({
+                showSubmenu: true,
+                isPrimaryOpen: !this.state.isPrimaryOpen
+            })
+
         } else {
             this.setState({previousMemu: {currentMenu}})
             this.setState({selectedMenu: {...menu }})
+            this.setState({
+                showSubmenu: true,
+                isPrimaryOpen: true
+            })
         }
 
 
@@ -72,7 +80,7 @@ class Sidenav extends Component {
 
     onSubmenuMouseOut(event){
         var e = event.toElement || event.relatedTarget;
-        if (e.parentNode == this || e == this) {
+        if (e.parentNode === this || e === this) {
             console.log("--- IN ---")
 
            return;
@@ -96,7 +104,7 @@ class Sidenav extends Component {
             css.push('collapse')
         }
 
-        css.push( this.state.selectedMenu && (menu.id === this.state.selectedMenu.id) && !this.state.collapsing ? 'in ' : '')
+        css.push( this.state.selectedMenu && (menu.id === this.state.selectedMenu.id) && !this.state.collapsing && this.state.isPrimaryOpen ? 'in ' : '')
         return css.join(' ')
     }
     getCssStyle = (menu) => {
@@ -124,7 +132,7 @@ class Sidenav extends Component {
             paper: paper
         }
 
-        return <SidenavView onSubmenuMouseOut={this.onSubmenuMouseOut}  {...this.props} toggleSidenave={this.toggleSidenave} onMenuClick={this.onMenuClick}  css={css} collapisng={this.state.collapsing} getMenuCssClass={this.getMenuCssClass} getCssStyle={this.getCssStyle} onSubmenuClick={this.onSubmenuClick} menuList={this.state.menu} selectedMenu={this.state.selectedMenu}  />
+        return <SidenavView isPrimaryOpen={this.state.isPrimaryOpen} onSubmenuMouseOut={this.onSubmenuMouseOut}  {...this.props} toggleSidenave={this.toggleSidenave} onMenuClick={this.onMenuClick}  css={css} collapisng={this.state.collapsing} getMenuCssClass={this.getMenuCssClass} getCssStyle={this.getCssStyle} onSubmenuClick={this.onSubmenuClick} menuList={this.state.menu} selectedMenu={this.state.selectedMenu}  />
     }
 }
 

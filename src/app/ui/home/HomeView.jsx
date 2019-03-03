@@ -17,12 +17,12 @@ const HomeView = ({sidenavStatus, onBackdropClick}) => (
             <Content />
         </div>
 
-        <Hidden only={[ 'sm', 'md']}>
+        {/* <Hidden only={[ 'sm', 'md']}>
             <Backdrop
                 // className={sidenavStatus !== SidenavStatus.MAX ? 'sidenav-backdrop-hide': ''}
                 open={sidenavStatus === SidenavStatus.MAX}
                 onClick={onBackdropClick} />
-        </Hidden>
+        </Hidden> */}
 
     </div>
 )

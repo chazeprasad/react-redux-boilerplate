@@ -17,8 +17,7 @@ import DashboardIco from '../../../media/img/icon_dashboard.svg'
 import ArrowRightIco from '../../../media/img/arrow-right.svg'
 
 
-
-const SidenavView = ({menuList, sidenav, css, toggleSidenave, onMenuClick, collapisng, getMenuCssClass, getCssStyle, onSubmenuClick, selectedMenu, onSubmenuMouseOut}) => (
+const SidenavView = ({menuList, isPrimaryOpen, sidenav, css, toggleSidenave, onMenuClick, collapisng, getMenuCssClass, getCssStyle, onSubmenuClick, selectedMenu, onSubmenuMouseOut}) => (
     <Drawer
         className={css.drawer}
         classes={{paper: css.paper }}
@@ -33,7 +32,7 @@ const SidenavView = ({menuList, sidenav, css, toggleSidenave, onMenuClick, colla
             ?
             <ul className={ sidenav.status === SidenavStatus.MIN ? 'hrx-nav hrx-nav-mini' : 'hrx-nav' }>
                 {menuList.map( (menu, index) => (
-                    <li className={ selectedMenu && menu.id === selectedMenu.id  ? 'primary active' : 'primary' } key={'menu-item-wrapper-'+index}>
+                    <li className={ selectedMenu && menu.id === selectedMenu.id && isPrimaryOpen  ? 'primary active' : 'primary' } key={'menu-item-wrapper-'+index}>
                        <a key={'menu-item-'+index} onClick={onMenuClick(menu)}>
                            {/* <i key={'menu-icon-'+index}>{menu.ico}</i> */}
                            <DashboardIco fill="#ffffff" className="ico" width={sidenav.status === SidenavStatus.MIN ? 42 : 20} height={sidenav.status === SidenavStatus.MIN ? 42 : 20}  />
@@ -51,6 +50,7 @@ const SidenavView = ({menuList, sidenav, css, toggleSidenave, onMenuClick, colla
                        {(menu.children && menu.children.length)
                             ?
                             <ul className={getMenuCssClass(menu)} key={'sm-'} style={getCssStyle(menu)} onMouseOut={onSubmenuMouseOut}>
+
                                 {menu.children.map((sm, i) => (
                                     <li key={'sm-item-wrapper-'+i}>
                                         <a key={'sm-item-'+i} onClick={onSubmenuClick(menu,sm)}>
