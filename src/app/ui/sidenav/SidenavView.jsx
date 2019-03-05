@@ -25,18 +25,19 @@ import ArrowLeftIco from '../../../media/img/arrow-left.svg'
 
 
 const SidenavView = ({
-    menuList, 
-    sidenav, 
-    css, 
-    toggleSidenave, 
-    onMenuClick, 
-    getMenuCssClass, 
-    getSubmenuWrapperCssClass, 
-    getSubmenuWrapperCssStyle, 
-    getSubmenuCssClass,  
-    onSubmenuClick, 
-    selectedMenu, 
-    activeMenu, 
+    p,
+    menuList,
+    sidenav,
+    css,
+    toggleSidenave,
+    onMenuClick,
+    getMenuCssClass,
+    getSubmenuWrapperCssClass,
+    getSubmenuWrapperCssStyle,
+    getSubmenuCssClass,
+    onSubmenuClick,
+    selectedMenu,
+    activeMenu,
     onSubmenuMouseOut}) => (
     <Drawer
         className={css.drawer}
@@ -60,7 +61,7 @@ const SidenavView = ({
                        <a key={'menu-item-'+index} onClick={onMenuClick(menu)}>
                            {/* <i key={'menu-icon-'+index}>{menu.ico}</i> */}
                            <DashboardIco fill="#ffffff" className="ico" width={sidenav.status === SidenavStatus.MIN ? 42 : 20} height={sidenav.status === SidenavStatus.MIN ? 42 : 20}  />
-                           <span key={'menu-title-'+index}>{menu.title}</span>
+                           <span key={'menu-title-'+index}>{p.t(menu.title) + ' - ' + menu.level }</span>
                            { menu.children.length > 0
                                 ?
                                <ArrowRightIco fill="#ffffff" className={ activeMenu && (menu.id === activeMenu.id) ? 'arrow open' : 'arrow'} width={20} height={20} />
@@ -78,7 +79,7 @@ const SidenavView = ({
                                 {menu.children.map((sm, i) => (
                                     <li className={getSubmenuCssClass(menu, sm)} key={'sm-item-wrapper-'+i}>
                                         <a key={'sm-item-'+i} onClick={onSubmenuClick(menu,sm)}>
-                                            <span key={'sm-title-'+i}>{sm.title}</span>
+                                            <span key={'sm-title-'+i}>{p.t(sm.title) + ' - ' + sm.level}</span>
                                         </a>
                                     </li>
                                 ))
@@ -116,7 +117,7 @@ const SidenavView = ({
 
         </div>
 
-        
+
 
     </Drawer>
 )

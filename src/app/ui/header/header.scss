@@ -2,6 +2,10 @@
 
 .hrx-header{
     display: flex;
+    background: $hrx-content-normal;
+    // border-bottom: 1px solid $hrx-content-text;
+    border-bottom: 1px solid lighten($hrx-content-normal, 10);
+
     &.hrx-header-shift-max {
         margin-left: $sidenav-max-width;
         width: calc(100% - #{$sidenav-max-width});
@@ -11,11 +15,22 @@
         margin-left: $sidenav-min-width;
         width: calc(100% - #{$sidenav-min-width});
         transition: width .25s ease;
-        
+
         @media(max-width: $mobile) {
             margin-left: 0;
             width: calc(100% - 0px);
         }
 
+    }
+    .menu-button {
+        transition: all 0.45s ease;
+    }
+
+    .hrx-header-right-controls{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-content: center;
+        width: 100%;
     }
 }

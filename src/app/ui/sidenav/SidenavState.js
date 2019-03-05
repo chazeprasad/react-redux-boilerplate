@@ -4,45 +4,35 @@ const initialState = {
     status: SidenavStatus.MAX,
     isMenuActive: true,
     menu: [
-
-
-            { id:1, title: 'Menu 1 A', ico: '', children:[
-                { id:11, title: 'Menu 2 A', children:[] },
-                { id:12, title: 'Menu 2 B', children:[] },
-                { id:13, title: 'Menu 2 C', children:[] },
-                { id:14, title: 'Menu 2 D', children:[] },
-                { id:15, title: 'Menu 2 E', children:[] },
-                { id:16, title: 'Menu 2 F', children:[] },
+            { id:1, title: 'primary', level: '1', ico: '', children:[
+                { id:11, title: 'secondary', level: '11', children:[] },
+                { id:12, title: 'secondary', level: '12', children:[] },
+                { id:13, title: 'secondary', level: '13', children:[] },
+                { id:14, title: 'secondary', level: '14', children:[] },
+                { id:15, title: 'secondary', level: '15', children:[] },
+                { id:16, title: 'secondary', level: '16', children:[] },
             ] },
-            { id:2, title: 'Menu 1 B', ico: '', children:[  ] },
-            { id:3, title: 'Menu 1 C', ico: '', children:[
-                { id:31, title: 'Menu 2 A', children:[] },
-                { id:32, title: 'Menu 2 B', children:[] },
-                { id:33, title: 'Menu 2 C', children:[] },
-                { id:34, title: 'Menu 2 D', children:[] },
-                { id:35, title: 'Menu 2 E', children:[] },
-                { id:36, title: 'Menu 2 F', children:[] },
+            { id:2, title: 'primary', level: '2', ico: '', children:[  ] },
+            { id:3, title: 'primary', level: '3', ico: '', children:[
+                { id:31, title: 'secondary', level: '21', children:[] },
+                { id:32, title: 'secondary', level: '22', children:[] },
+                { id:33, title: 'secondary', level: '23', children:[] },
+                { id:34, title: 'secondary', level: '24', children:[] },
+                { id:35, title: 'secondary', level: '25', children:[] },
+                { id:36, title: 'secondary', level: '26', children:[] },
             ] },
-            { id:4, title: 'Menu 1 D', ico: '', children:[] },
-            { id:5, title: 'Menu 1 E', ico: '', children:[
-                { id:51, title: 'Menu 2 A', children:[] },
-                { id:52, title: 'Menu 2 B', children:[] },
-                { id:53, title: 'Menu 2 C', children:[] },
-                { id:54, title: 'Menu 2 D', children:[] },
-                { id:55, title: 'Menu 2 E', children:[] },
-                { id:56, title: 'Menu 2 F', children:[] },
+            { id:4, title: 'primary', title: 'primary', level: '4', ico: '', children:[] },
+            { id:5, title: 'primary', level: '5', ico: '', children:[
+                { id:51, title: 'secondary', level: '51', children:[] },
+                { id:52, title: 'secondary', level: '52', children:[] },
+                { id:53, title: 'secondary', level: '53', children:[] },
+                { id:54, title: 'secondary', level: '54', children:[] },
             ] },
-            { id:6, title: 'Menu 1 F', ico: '', children:[
-                { id:61, title: 'Menu 2 A', children:[] },
-                { id:62, title: 'Menu 2 B', children:[] },
-                { id:63, title: 'Menu 2 C', children:[] },
-                { id:64, title: 'Menu 2 D', children:[] },
-                { id:65, title: 'Menu 2 E', children:[] },
-                { id:66, title: 'Menu 2 F', children:[] },
+            { id:6, title: 'primary', title: 'primary', level: '6', ico: '', children:[
+                { id:61, title: 'secondary', level: '61', children:[] },
+                { id:62, title: 'secondary', level: '62', children:[] },
+                { id:63, title: 'secondary', level: '63', children:[] },
             ] },
-
-
-
     ]
 }
 

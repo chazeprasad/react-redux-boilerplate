@@ -3,6 +3,9 @@ import SidenavView from './SidenavView'
 import compose from 'recompose/compose'
 import { connect } from 'react-redux'
 import { withStyles } from '@material-ui/core/styles'
+import {setLanguage} from 'redux-polyglot';
+import translate from 'redux-polyglot/translate';
+
 
 
 import { SidenavAction } from './SidenavAction'
@@ -10,6 +13,11 @@ import { SidenavAction } from './SidenavAction'
 import './sidenav.scss'
 import { SidenavStatus } from './SidenavStatus';
 import { jss } from './SidenavTheme'
+
+import enPhraces from '../../i18n/en'
+import fnPhraces from '../../i18n/fn'
+import esPhraces from '../../i18n/es'
+
 
 
 class Sidenav extends Component {
@@ -39,7 +47,11 @@ class Sidenav extends Component {
             })
         })
 
+        this.setLanguage('en', enPhraces);
+
     }
+    setLanguage = (locale, phrace) => this.dispatch( setLanguage(locale, phrace) )
+
     toggleSidenave = () => {
         this.activeMenu = null;
         this.setState({collapsing: true});
@@ -58,7 +70,7 @@ class Sidenav extends Component {
 
         const currentMenu = {...this.state.activeMenu};
 
-       
+
 
         if(this.state.activeMenu && menu.id === this.state.activeMenu.id) {
             this.setState({
@@ -80,10 +92,10 @@ class Sidenav extends Component {
                     selectedSubmenu: null
                 })
 
-                
+
             }
 
-            
+
         }
 
         this.setState({collapsing: true});
@@ -107,7 +119,7 @@ class Sidenav extends Component {
                 activeMenu: null,
             })
         }
-        
+
     }
 
     onSubmenuMouseOut(event){
@@ -135,7 +147,7 @@ class Sidenav extends Component {
 
         css.push(this.state.activeMenu && this.state.activeMenu.id === menu.id && sidenav.isMenuActive ? ' active' : '' )
         css.push(this.state.selectedMenu && this.state.selectedMenu.id === menu.id ? ' selected' : '' )
-        
+
         return css.join(' ')
     }
 
@@ -149,11 +161,11 @@ class Sidenav extends Component {
 
         css.push( this.state.activeMenu && (menu.id === this.state.activeMenu.id) && !this.state.collapsing ? ' in' : '')
         css.push( this.state.selectedSubmenu && (menu.id === this.state.selectedSubmenu.id) && !this.state.collapsing ? ' selected' : '')
-        
+
         return css.join(' ')
     }
 
-    
+
     getSubmenuWrapperCssStyle = (menu) => {
         const data = this.props.sidenav
         let height =  this.state.activeMenu && (menu.id === this.state.activeMenu.id) ? (menu.children.length * this.submenuHeight) + 0 : 0
@@ -170,13 +182,13 @@ class Sidenav extends Component {
     getSubmenuCssClass = (menu, submenu) => {
         let css = ['']
         css.push(this.state.selectedSubmenu && this.state.selectedSubmenu.id === submenu.id ? 'selected' : '' )
-        
+
         return css.join(' ')
     }
 
-    
 
-    
+
+
 
     render() {
 
@@ -190,8 +202,8 @@ class Sidenav extends Component {
             paper: paper
         }
 
-        return <SidenavView  
-            {...this.props} 
+        return <SidenavView
+            {...this.props}
             css={css}
             onSubmenuMouseOut={this.onSubmenuMouseOut}
             toggleSidenave={this.toggleSidenave}
@@ -204,7 +216,7 @@ class Sidenav extends Component {
             onSubmenuClick={this.onSubmenuClick}
             menuList={this.state.menu}
             selectedMenu={this.state.selectedMenu}
-            activeMenu={this.state.activeMenu}  
+            activeMenu={this.state.activeMenu}
         />
     }
 }
@@ -221,5 +233,6 @@ export default compose(
     connect(
         stateToProps,
         null
-    )
+    ),
+    translate({polyglotScope: 'menu'})
 )(Sidenav)

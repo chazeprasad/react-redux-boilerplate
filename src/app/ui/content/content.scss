@@ -1,0 +1,41 @@
+@import '../../../scss/settings';
+
+.hrx-content-root{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 3000px;
+    background-color: $hrx-content-bg;
+
+    .freeda-trigger {
+        border: 0;
+        border-radius: 100%;
+        bottom: 12px;
+
+        height: 54px;
+        opacity: 1;
+        outline: 0;
+        position: fixed;
+        right: 12px;
+        // text-indent: -9000px;
+        transition: all .2s ease-out;
+        width: 54px;
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+        background-color: $hrx-light-blue;
+        cursor: pointer;
+
+        color: #ffffff;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+
+        &.freeda-trigger-message {
+            // background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAA3lBMV…bxO+sDZehZsYxPI956G/keZQzP95BGfQ7y/Sm4+LUDrT+vKBtiP2phEAAAAABJRU5ErkJggg==);
+        }
+    }
+
+
+}
