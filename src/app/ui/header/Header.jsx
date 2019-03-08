@@ -8,8 +8,13 @@ import { SidenavAction } from '../sidenav/SidenavAction'
 import { SidenavStatus } from '../sidenav/SidenavStatus'
 
 import './header.scss'
+import { HeaderAction } from './HeaderAction';
 
 class Header extends Component {
+    state = {
+        langMenu: null
+    }
+
     constructor(props) {
         super(props)
         this.dispatch = this.props.dispatch
@@ -18,6 +23,15 @@ class Header extends Component {
         const action = SidenavAction.Create(SidenavAction.TOGGLE)
         this.dispatch(action)
     }
+
+    onLangButtonClick = event => {
+        // this.setState({ langMenu: event.currentTarget });
+        console.log(event.currentTarget)
+        const action = HeaderAction.Create(HeaderAction.SHOW_LANG_SELECTION, {langMenu: event.currentTarget})
+        this.dispatch(action);
+    };
+
+
 
     render() {
         const classList = ['hrx-header']
@@ -37,6 +51,9 @@ class Header extends Component {
                 {...this.props}
                 toggleSidenav={this.toggleSidenav}
                 css={css}
+                onLangButtonClick = {this.onLangButtonClick}
+                langMenu = {this.props.langMenu}
+
             />
         )
     }
@@ -45,6 +62,7 @@ class Header extends Component {
 const stateToProps = state => {
     return {
         sidenavStatus: HeaderSelector.GetSidenavStatus(state),
+        langMenu:state.header.langMenu
     }
 }
 

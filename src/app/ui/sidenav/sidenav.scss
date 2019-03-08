@@ -55,17 +55,35 @@ $duration:0.45s;
         box-shadow: 5px 0 7px 0 rgba(0, 0, 0, 0.25);
 
         @media(max-width: $mobile){
-            transition: width .25s ease;
+            // transition: width .25s ease;
+        }
+
+        .hrx-slim-scroll-bar{
+            // overflow-x: visible !important;
+            // width: 280px !important;
+            height: calc(100vh - 128px) !important;
         }
 
         &.sidenav-min{
 
             width:64px;
             box-shadow: none;
+
+            .hrx-menu-controller-wrapper{
+                width: 64px;
+                background-color: rgba(255, 255, 255, 0.0);
+
+
+            }
             @media(max-width: $mobile){
                 width:0px;
                 left: -1px;
+
+                .hrx-menu-controller-wrapper{
+                    width: 0px;
+                }
             }
+
           }
 
           &.sidenav-max{
@@ -86,7 +104,7 @@ $duration:0.45s;
             align-items: center;
             // transition: all $duration ease;
             overflow: hidden;
-            
+
 
             .hrx-logo{
                 min-width: 64px;
@@ -112,16 +130,14 @@ $duration:0.45s;
             left: 0px;
             bottom: 0px;
             width: $sidenav-width;
-            max-width: 280px; 
+            max-width: 280px;
             overflow: hidden;
             transition: all $duration ease;
-            
+
             @media(max-width: $mobile){
                 width: $sidenav-width;
                 max-width: 330px;
             }
-
-            
 
             // @include bg-gradient-two(180deg, lighten($hrx-light-blue, 0), lighten($hrx-light-blue, 10));
             background-color: rgba(255, 255, 255, 0.2);
@@ -133,7 +149,7 @@ $duration:0.45s;
             }
 
             .hrx-avatar {
-                
+
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
@@ -142,15 +158,10 @@ $duration:0.45s;
                 min-width: 64px;
                 height: 64px;
 
-
-                
-                
-                
-                
                 // margin-left: 16px;
 
                 .img-wrapper{
-                    
+
                     border-radius: 50%;
                     border: 2px solid rgba(255, 255, 255, 0.7);
                     overflow: hidden;
@@ -211,14 +222,14 @@ $duration:0.45s;
                     .ico{
                         display: flex;
                         color: lighten($hrx-light-blue,30);
-                        
+
                     }
                 }
-                
-            }
-            
 
-            
+            }
+
+
+
         }
 
         .hrx-sidemenu-wrapper {
@@ -249,12 +260,11 @@ $duration:0.45s;
 
                             > a {
                                 min-width:280px;
-                                
-
-
                                 // justify-content: center;
                                 // padding:0px;
+
                                 .ico {
+
                                     width: 32px;
                                     height: 32px;
                                     transition: all $duration ease;
@@ -263,26 +273,17 @@ $duration:0.45s;
                                     // display: none;
                                     opacity: 0;
                                     transition: all $duration ease;
-
-                                    
                                 }
                                 .arrow {
                                     transition: all $duration ease;
                                     opacity: 0;
                                 }
-
-
                             }
-
-                            
 
                             &.active {
                                 //  left: 64px;
-                                overflow: visible;
+                                overflow: hidden;
                                 min-width:280px;
-
-
-
                                 box-shadow: 0px 2px 4px 2px rgba(0,0,0,0.1),
                                             2px -2px 4px 2px rgba(0,0,0,0.06);
                                 border-top: 1px solid darken($hrx-light-blue,12) !important;
@@ -294,7 +295,7 @@ $duration:0.45s;
                                     min-width:280px;
                                     justify-content: flex-start;
                                     span {
-                                        margin-left: 32px;
+                                        // margin-left: 32px;
                                         display: block;
                                         opacity: 1;
                                     }
@@ -307,11 +308,11 @@ $duration:0.45s;
                                     }
                                 }
 
-                                
+
                             }
 
                             &.selected{
-                                overflow: visible;
+                                // overflow: visible;
 
                                 border-top: 1px solid rgba(255, 255, 255, .4);
                                 border-bottom: 1px solid rgba(255, 255, 255, .4);
@@ -337,22 +338,24 @@ $duration:0.45s;
                                 border-right: 1px solid darken($hrx-light-blue,18);
                                 border-left: 1px solid darken($hrx-light-blue,12);
 
+                                display: none;
+
 
 
                                 li {
                                     a{
                                         padding: 10px 10px 10px 15px;
-                                         
-                                        transition: all $duration ease;   
 
-                                       
+                                        transition: all $duration ease;
+
+
                                     }
 
-                                       
-                                        
-                                    
 
-                                    
+
+
+
+
 
                                     &:first-child{
                                         // border-top: none;
@@ -399,8 +402,8 @@ $duration:0.45s;
                                 >li {
                                     >a{
                                         span {
-                                            opacity: 1;  
-                                            transition: all $duration ease; 
+                                            opacity: 1;
+                                            transition: all $duration ease;
                                         }
                                     }
                                 }
@@ -417,8 +420,8 @@ $duration:0.45s;
                                 >li {
                                     >a{
                                         span {
-                                            opacity: 1;  
-                                            transition: all $duration ease; 
+                                            opacity: 1;
+                                            transition: all $duration ease;
                                         }
                                     }
                                 }
@@ -428,8 +431,8 @@ $duration:0.45s;
                             >li {
                                 >a{
                                     span {
-                                        opacity: 0;  
-                                        transition: all $duration ease; 
+                                        opacity: 0;
+                                        transition: all $duration ease;
                                     }
                                 }
                             }
@@ -445,7 +448,7 @@ $duration:0.45s;
                         cursor: pointer;
                         color: #ffffff;
                         font-weight: 400;
-                        padding: 14px 20px 14px 16px;
+                        // padding: 14px 20px 14px 16px;
                         display: block;
                         text-decoration: none;
                         background-color: transparent;
@@ -456,7 +459,9 @@ $duration:0.45s;
 
                         font-size: 14px;
                         font-weight: 400;
-                        
+
+                        padding-left: 16px;
+
 
 
 
@@ -500,7 +505,7 @@ $duration:0.45s;
                         // border-bottom: 1px solid #666;
                         min-height: $submenu-height;
 
-                        
+
 
                         &:first-child{
                             border-top: 1px solid rgba(255, 255, 255, .2);
@@ -520,15 +525,15 @@ $duration:0.45s;
                             }
                             span {
                                 opacity: 1;
-                                transition: all $duration ease;           
+                                transition: all $duration ease;
                            }
 
                         }
                         &.active {
                             border: none;
                             span {
-                                 opacity: 1;  
-                                transition: all $duration ease;           
+                                 opacity: 1;
+                                transition: all $duration ease;
 
                             }
                           }
@@ -536,13 +541,13 @@ $duration:0.45s;
                             a {
                                 background-color: darken($hrx-light-blue, 15);
                                 span {
-                                    opacity: 1;    
-                                    transition: all $duration ease;           
+                                    opacity: 1;
+                                    transition: all $duration ease;
 
                                }
                             }
                         }
-                        
+
                         &:last-child {
                             padding-bottom: 10px;
                         }
@@ -551,7 +556,7 @@ $duration:0.45s;
                 &.collapse{
                     // display: none;
                     opacity: 0;
-                    
+
 
                 }
                 &.collapsing{

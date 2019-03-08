@@ -7,8 +7,8 @@
     border-bottom: 1px solid lighten($hrx-content-normal, 10);
 
     &.hrx-header-shift-max {
-        margin-left: $sidenav-max-width;
-        width: calc(100% - #{$sidenav-max-width});
+        // margin-left: $sidenav-max-width;
+        // width: calc(100% - #{$sidenav-max-width});
         transition: width .25s ease;
     }
     &.hrx-header-shift-min{
@@ -23,7 +23,16 @@
 
     }
     .menu-button {
-        transition: all 0.45s ease;
+        // transition: all 0.25s ease;
+    }
+
+    .hrx-nav-button{
+
+        &.tablet-hide{
+            @media(max-width: $tablet){
+                display: none;
+            }
+        }
     }
 
     .hrx-header-right-controls{

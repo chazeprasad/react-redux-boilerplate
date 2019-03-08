@@ -7,8 +7,7 @@ import List from '@material-ui/core/List'
 import Link from '@material-ui/core/Link'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-import SimpleBar from 'simplebar-react';
-import 'simplebar/dist/simplebar.min.css';
+
 
 import { SidenavStatus } from './SidenavStatus';
 import classNames from 'classnames';
@@ -19,16 +18,21 @@ import LogoMin from '../../../media/img/logo.svg'
 // import LogoMin from '../../../media/img/logo-min-dark.svg'
 import LogoText from '../../../media/img/logo-text.svg'
 import LeftArrow from '../../../media/img/icon_arrow_left.svg'
-import DashboardIco from '../../../media/img/icon_dashboard.svg'
 import ArrowRightIco from '../../../media/img/arrow-right.svg'
 import ArrowLeftIco from '../../../media/img/arrow-left.svg'
 
+
+
+
+import { Scrollbars } from 'react-custom-scrollbars';
+import SvgMenuIcon from './SvgMenuIcon';
 
 const SidenavView = ({
     p,
     menuList,
     sidenav,
     css,
+    icons,
     toggleSidenave,
     onMenuClick,
     getMenuCssClass,
@@ -51,7 +55,7 @@ const SidenavView = ({
             <LogoMin className="hrx-logo"    />
             <LogoText className="hrx-logo-text"  width="150" height="64" style={sidenav.status === SidenavStatus.MAX ? {opacity: 1} : {opacity: 0}}   />
         </div>
-        {/* <SimpleBar style={{ height: '90vh', 'overflow-x': 'visible' }}> */}
+        <Scrollbars autoHide className="hrx-slim-scroll-bar"  >
             <div className="hrx-sidemenu-wrapper">
         { menuList
             ?
@@ -60,21 +64,19 @@ const SidenavView = ({
                     <li className={ getMenuCssClass(menu) } key={'menu-item-wrapper-'+index}>
                        <a key={'menu-item-'+index} onClick={onMenuClick(menu)}>
                            {/* <i key={'menu-icon-'+index}>{menu.ico}</i> */}
-                           <DashboardIco fill="#ffffff" className="ico" width={sidenav.status === SidenavStatus.MIN ? 42 : 20} height={sidenav.status === SidenavStatus.MIN ? 42 : 20}  />
+                            <SvgMenuIcon ico={menu.ico} />
+                           {/* <DashboardIco fill="#ffffff" className="ico"   /> */}
                            <span key={'menu-title-'+index}>{p.t(menu.title) + ' - ' + menu.level }</span>
                            { menu.children.length > 0
                                 ?
                                <ArrowRightIco fill="#ffffff" className={ activeMenu && (menu.id === activeMenu.id) ? 'arrow open' : 'arrow'} width={20} height={20} />
                                 : ''
                            }
-
-
-
                        </a>
 
                        {(menu.children && menu.children.length)
                             ?
-                            <ul className={getSubmenuWrapperCssClass(menu)} key={'sm-'} style={getSubmenuWrapperCssStyle(menu)} onMouseOut={onSubmenuMouseOut}>
+                            <ul className={getSubmenuWrapperCssClass(menu)} key={'sm-'} style={getSubmenuWrapperCssStyle(menu)} >
 
                                 {menu.children.map((sm, i) => (
                                     <li className={getSubmenuCssClass(menu, sm)} key={'sm-item-wrapper-'+i}>
@@ -93,9 +95,9 @@ const SidenavView = ({
             : ''
         }
         </div>
-        {/* </SimpleBar> */}
+        </Scrollbars>
 
-        <div className='hrx-menu-controller-wrapper' style={sidenav.status === SidenavStatus.MAX ? {} : {width: 64}}>
+        <div className='hrx-menu-controller-wrapper' >
 
         <div className="hrx-avatar">
             <div className={sidenav.status === SidenavStatus.MAX ? 'img-wrapper ' : 'img-wrapper avatar-min'}>

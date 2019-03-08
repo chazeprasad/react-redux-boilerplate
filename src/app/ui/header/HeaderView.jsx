@@ -15,15 +15,23 @@ import ToVoIco from '@material-ui/icons/TouchAppOutlined'
 // import ToVoIco from '@material-ui/icons/TouchApp'
 
 
-const HeaderView = props => (
-    <AppBar position="fixed" className={props.css.header}>
+
+const HeaderView = ({
+    css,
+    toggleSidenav,
+    sidenavStatus,
+    langMenu,
+    onLangButtonClick
+
+}) => (
+    <AppBar position="fixed" className={css.header}>
         <Toolbar>
             <IconButton
                 color="inherit"
                 aria-label="Open drawer"
-                onClick={props.toggleSidenav}
+                onClick={toggleSidenav}
                 className="menu-button"
-                style={props.sidenavStatus === SidenavStatus.MIN ? {display: 'block' , opacity: 1} : {display: 'block', opacity: 0}}
+
             >
                 <MenuIcon />
             </IconButton>
@@ -31,34 +39,67 @@ const HeaderView = props => (
 
             <div className="hrx-header-right-controls">
 
-                <IconButton color="inherit" title="Search" >
+                <IconButton
+                    color="inherit"
+                    title="Search"
+                    className="hrx-nav-button "
+                >
                     <SearchIco />
                 </IconButton>
 
-                <IconButton color="inherit" title="Language"  >
+                <IconButton
+                    color="inherit"
+                    title="Language"
+                    aria-owns={langMenu ? 'lang-menu' : undefined}
+                    aria-haspopup="true"
+                    onClick={onLangButtonClick}
+                    className="hrx-nav-button"
+                >
                     <LanguageIco />
                 </IconButton>
 
-                <IconButton color="inherit" title="Apps"  >
+
+
+                <IconButton
+                    color="inherit"
+                    title="Apps"
+                    className="hrx-nav-button tablet-hide"
+                >
                     <AppsIco />
                 </IconButton>
 
-                <IconButton color="inherit" title="Notifications"   >
+                <IconButton
+                    color="inherit"
+                    title="Notifications"
+                    className="hrx-nav-button tablet-hide"
+                >
                     <NotificationsIco />
                 </IconButton>
 
-                <IconButton color="inherit" title="Enter Autonomous Mode"   >
+                <IconButton
+                    color="inherit"
+                    title="Enter Autonomous Mode"
+                    className="hrx-nav-button tablet-hide"
+                >
                     <ToVoIco />
                 </IconButton>
 
-                <IconButton color="inherit" title="More"  >
+                <IconButton
+                    color="inherit"
+                    title="More"
+                    className="hrx-nav-button"
+                >
                     <MoreVertIco />
                 </IconButton>
 
 
 
             </div>
+
         </Toolbar>
+
+
+
     </AppBar>
 )
 

@@ -20,6 +20,9 @@ import esPhraces from '../../i18n/es'
 
 
 
+
+
+
 class Sidenav extends Component {
     state = {
         collapsing: false,
@@ -32,7 +35,9 @@ class Sidenav extends Component {
         menu: []
     }
 
-    duraion = 1.5
+
+
+    duraion = 0.45
     menuHeight = 64
     submenuHeight = 42
     constructor(props) {
@@ -64,8 +69,15 @@ class Sidenav extends Component {
     }
     onMenuClick = (menu) => (evt) => {
         evt.preventDefault();
+        let action;
 
-        const action = SidenavAction.Create(SidenavAction.ACTIVATE_MENU);
+        if(this.props.sidenav.status === SidenavStatus.MIN){
+            const action = SidenavAction.Create(SidenavAction.TOGGLE)
+            this.dispatch(action)
+            return null;
+        }
+
+        action = SidenavAction.Create(SidenavAction.ACTIVATE_MENU);
         this.dispatch(action);
 
         const currentMenu = {...this.state.activeMenu};
@@ -78,6 +90,13 @@ class Sidenav extends Component {
                 activeMenu: null,
                 // showSubmenu: !this.state.showSubmenu
             })
+
+            if(menu.children && menu.children.length === 0) {
+                action = SidenavAction.Create(SidenavAction.TOGGLE)
+                this.dispatch(action)
+            }
+
+
 
         } else {
             this.setState({
@@ -92,16 +111,22 @@ class Sidenav extends Component {
                     selectedSubmenu: null
                 })
 
+                action = SidenavAction.Create(SidenavAction.TOGGLE)
+                this.dispatch(action)
 
             }
 
 
         }
 
+
+
         this.setState({collapsing: true});
         this.timer = setTimeout(() => {
             this.setState({collapsing: false});
         }, this.duraion * 1000);
+
+
 
 
     }
@@ -119,6 +144,9 @@ class Sidenav extends Component {
                 activeMenu: null,
             })
         }
+
+        const action = SidenavAction.Create(SidenavAction.TOGGLE);
+        this.dispatch(action);
 
     }
 
@@ -205,7 +233,7 @@ class Sidenav extends Component {
         return <SidenavView
             {...this.props}
             css={css}
-            onSubmenuMouseOut={this.onSubmenuMouseOut}
+            icons={this.icons}
             toggleSidenave={this.toggleSidenave}
             onMenuClick={this.onMenuClick}
             collapisng={this.state.collapsing}
